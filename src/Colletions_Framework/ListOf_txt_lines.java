@@ -10,7 +10,7 @@ public class ListOf_txt_lines {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		InputStream is = new FileInputStream(
-				"/Users/igor/Downloads/Churrasco-igor(final).txt");
+				"/Users/igor/Downloads/eclipse/plugins/org.apache.ant_1.8.4.v201303080030/about_files/ASL-LICENSE-2.0.txt");
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		String line = br.readLine();
