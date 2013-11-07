@@ -21,6 +21,7 @@ public class ContaCorrente {
 	}//fim deposita
 	
 	public String toString(){
-		return ""+this.saldo;
+		String output=String.valueOf(this.saldo);
+		return output;
 	}
 }
