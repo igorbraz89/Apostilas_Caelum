@@ -3,25 +3,25 @@ package JDBC_Exe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
 
 public class TabContatos {
-	
+	private Connection con;
+	 
 	public TabContatos(){
-		
+		this.con = new ConnectionFactory().getConnection();
+		System.out.println("Conex‹o estabelecida");
 		
 	}
 
 	public void adciona(Contato contato) throws SQLException {
 		
-		Connection con = new ConnectionFactory().getConnection();
+	
 
 		// cria um preparedStatement
 		String sql = "insert into contatos"
 				+ " (nome,email,endereco,dataNascimento)" + " values (?,?,?,?)";
 
-		PreparedStatement stmt = con.prepareStatement(sql);
+		PreparedStatement stmt = this.con.prepareStatement(sql);
 		// preenche os valores
 
 		stmt.setString(1, contato.getNome());
@@ -35,7 +35,7 @@ public class TabContatos {
 		stmt.close();
 		System.out.println("Gravado!");
 
-		con.close();
+		this.con.close();
 		System.out.println("conex‹o encerrada");
 	}
 
