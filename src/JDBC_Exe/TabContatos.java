@@ -6,66 +6,69 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TabContatos {
-	private Connection con;
-	 
-	public TabContatos(){
-		this.con = new ConnectionFactory().getConnection();
+	private Connection connection;
+
+	public TabContatos() {
+		// Estabelece a conex‹o com o DataBase
+		this.connection = new ConnectionFactory().getConnection();
 		System.out.println("Conex‹o estabelecida");
-		
+
 	}
 
 	public void adciona(Contato contato) throws SQLException {
-		
-	
 
 		// cria um preparedStatement
-		String sql = "insert into contatos"
+		String sql_insertIntoContatos = "insert into contatos"
 				+ " (nome,email,endereco,dataNascimento)" + " values (?,?,?,?)";
 
-		PreparedStatement stmt = this.con.prepareStatement(sql);
+		PreparedStatement stmt_insert = this.connection.prepareStatement(sql_insertIntoContatos);
 		// preenche os valores
 
-		stmt.setString(1, contato.getNome());
-		stmt.setString(2, contato.getEmail());
-		stmt.setString(3, contato.getEndereco());
-		 stmt.setDate(4, contato.getDataNascimento());
+		stmt_insert.setString(1, contato.getNome());
+		stmt_insert.setString(2, contato.getEmail());
+		stmt_insert.setString(3, contato.getEndereco());
+		stmt_insert.setDate(4, contato.getDataNascimento());
 
 		// executa
-		stmt.execute();
+		stmt_insert.execute();
 
-		stmt.close();
+		stmt_insert.close();
 		System.out.println("Gravado!");
 
-		this.con.close();
+		this.connection.close();
 		System.out.println("conex‹o encerrada");
 	}
-	
-	public void showContatos() throws SQLException{
+
+	public void showContatos() throws SQLException {
 		// pega a conex‹o e o Statement
 		Connection con = new ConnectionFactory().getConnection();
-		PreparedStatement stmt = con.prepareStatement("select * from contatos");
+		PreparedStatement stmt_selectAllContatos = con
+				.prepareStatement("select * from contatos");
 
 		// executa um select
-		ResultSet rs = stmt.executeQuery();
+		ResultSet rs_querySelect = stmt_selectAllContatos.executeQuery();
 
 		// itera no ResultSet
-		while (rs.next()) {
-			String nome = rs.getString("nome");
-			  String email = rs.getString("email");
-
-			  System.out.println(nome + " :: " + email);
+		while (rs_querySelect.next()) {
+			String nome = rs_querySelect.getString("nome");
+			String email = rs_querySelect.getString("email");
+			String endereco = rs_querySelect.getString("endereco");
+			
+			
+			System.out.println("< "+nome + " >------< "+ email+" >------< "+endereco+" >");
+			
 		}
-
-		rs.close();
-		stmt.close();
+	
+		rs_querySelect.close();
+		stmt_selectAllContatos.close();
 		con.close();
 	}
-	void closeCon(){
+
+	void closeCon() {
 		try {
-			this.con.close();
-			System.out.println("conex‹o fechada");
+			this.connection.close();
+			System.out.println("Conex‹o fechada");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -5,20 +5,22 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
-public class TestConex {
+public class Test_Contatos {
 	public static void main(String[] args) throws SQLException {
 
-		TabContatos tc = new TabContatos();
+		TabContatos tab_Contatos = new TabContatos();
 		Contato contato = new Contato();
-		
-		//Escolha da ação desejada
+
+		// Escolha da ação desejada
 		String aux = JOptionPane.showInputDialog(null,
 				"1-Adicionar contato\n2-Show contatos\n3-Sair");
 		int choice = Integer.parseInt(aux);
-		
+
 		switch (choice) {
 
-		case 1:
+		case 1: // Adicionando um contato ao database
+
+			// Inicialzação dos atributos do Contato
 			String nome = JOptionPane.showInputDialog(null, "Nome contato");
 			contato.setNome(nome);
 			String email = JOptionPane.showInputDialog(null, "E-mail");
@@ -28,7 +30,7 @@ public class TestConex {
 			contato.setDataNascimento(Calendar.getInstance());
 
 			try {
-				tc.adciona(contato);
+				tab_Contatos.adciona(contato);// Tenta gravar o contato no database
 			} catch (SQLException e) {
 
 				System.out
@@ -36,19 +38,21 @@ public class TestConex {
 				System.out.println(e.getErrorCode());
 			}
 			break;
-		case 2:
-			System.out.println("Tabela contatos");
 
-			tc.showContatos();
+		case 2: // Visualiza a tabela contatos
+
+			System.out.println("Tabela contatos");
+			tab_Contatos.showContatos();
 			break;
-		case 3:
+
+		case 3: // Sair do programa e fechar a conexão com o DB
 			System.out.println("Good bye");
-			tc.closeCon();
+			tab_Contatos.closeCon();
 			break;
-			default:
-				System.out.println("Invalid choice");
-				tc.closeCon();
-			
+		default:// Nenhuma opção válida escolhida
+			System.out.println("Invalid choice");
+			tab_Contatos.closeCon();
+
 		}
 	}
 }
