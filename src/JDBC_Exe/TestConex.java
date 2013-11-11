@@ -6,7 +6,7 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 public class TestConex {
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args){
 
 		TabContatos tc = new TabContatos();
 		Contato contato= new Contato();
@@ -19,7 +19,14 @@ public class TestConex {
 		String endereco = JOptionPane.showInputDialog(null, "Endereço");
 		contato.setEndereco(endereco);
 		contato.setDataNascimento(Calendar.getInstance());
-		tc.adciona(contato);
+		
+		try {
+			tc.adciona(contato);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erro ao tentar gravar as informações no banco");
+			System.out.println(e.getErrorCode());
+		}
 		System.out.println("Dados contato: " + nome + " | " + email + " | "
 				+ endereco);
 	}
