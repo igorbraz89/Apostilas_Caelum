@@ -2,6 +2,7 @@ package JDBC_Exe;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TabContatos {
@@ -38,5 +39,34 @@ public class TabContatos {
 		this.con.close();
 		System.out.println("conex‹o encerrada");
 	}
+	
+	public void showContatos() throws SQLException{
+		// pega a conex‹o e o Statement
+		Connection con = new ConnectionFactory().getConnection();
+		PreparedStatement stmt = con.prepareStatement("select * from contatos");
 
+		// executa um select
+		ResultSet rs = stmt.executeQuery();
+
+		// itera no ResultSet
+		while (rs.next()) {
+			String nome = rs.getString("nome");
+			  String email = rs.getString("email");
+
+			  System.out.println(nome + " :: " + email);
+		}
+
+		rs.close();
+		stmt.close();
+		con.close();
+	}
+	void closeCon(){
+		try {
+			this.con.close();
+			System.out.println("conex‹o fechada");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
