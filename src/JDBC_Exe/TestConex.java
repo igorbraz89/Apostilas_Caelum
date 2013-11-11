@@ -1,38 +1,26 @@
 package JDBC_Exe;
 
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.Calendar;
 
+import javax.swing.JOptionPane;
 
 public class TestConex {
-    public static void main(String[] args) throws SQLException {
-    	
-    
-    	
-        Connection con= new ConnectionFactory().getConnection();
-        
-     
+	public static void main(String[] args) throws SQLException {
 
-        // cria um preparedStatement
-        String sql = "insert into contatos" +
-                " (nome,email,endereco,dataNascimento)" +
-                " values (?,?,?,?)";
-        PreparedStatement stmt = con.prepareStatement(sql);
+		TabContatos tc = new TabContatos();
+		Contato contato= new Contato();
+		
+		String nome = JOptionPane.showInputDialog(null, "Nome contato");
+		contato.setNome(nome);
 
-        // preenche os valores
-        stmt.setString(1, "Giran");
-        stmt.setString(2, "giran@giran.com.br");
-        stmt.setString(3, "Jardim da Penha, Vitoria-ES");
-        stmt.setDate(4, new java.sql.Date(
-                Calendar.getInstance().getTimeInMillis()));
-
-        // executa
-        stmt.execute();
-        stmt.close();
-        System.out.println("Gravado!");
-        
-        con.close();
-        System.out.println("conexão encerrada");
-    	
-    }
+		String email = JOptionPane.showInputDialog(null, "E-mail");
+		contato.setEmail(email);
+		String endereco = JOptionPane.showInputDialog(null, "Endereço");
+		contato.setEndereco(endereco);
+		contato.setDataNascimento(Calendar.getInstance());
+		tc.adciona(contato);
+		System.out.println("Dados contato: " + nome + " | " + email + " | "
+				+ endereco);
+	}
 }

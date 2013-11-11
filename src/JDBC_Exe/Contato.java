@@ -1,5 +1,6 @@
 package JDBC_Exe;
 
+import java.sql.Date;
 import java.util.Calendar;
 
 public class Contato {
@@ -40,8 +41,9 @@ public class Contato {
 	    this.id = novo;
 	  }
 
-	  public Calendar getDataNascimento() {
-	    return this.dataNascimento;
+	  public Date getDataNascimento() {
+	    return new Date(this.dataNascimento.getTimeInMillis());
+	    
 	  }
 	  public void setDataNascimento(Calendar dataNascimento) {
 	    this.dataNascimento = dataNascimento;
