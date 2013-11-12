@@ -55,14 +55,15 @@ public class Test_Contatos {
 			case 2: // Visualiza a tabela contatos
 
 				System.out.println("Tabela contatos");
-				tab_Contatos.showContatos();
+				tab_Contatos.showTabelaContatos();
 				break;
 
-			case 3: // Get list nome
+			case 3: // Cria Lista
 				List<Contato> lista = new ArrayList<Contato>();
 				lista = tab_Contatos.getLista();
-				visualizaLista(lista);
+				
 				break;
+			
 
 			default:// Nenhuma opção válida escolhida
 				System.out.println("Invalid choice");

@@ -43,7 +43,7 @@ public class TabContatos {
 		System.out.println("conexão encerrada");
 	}
 
-	public void showContatos() throws SQLException {
+	public void showTabelaContatos() throws SQLException {
 		// pega a conexão e o Statement
 		Connection con = new ConnectionFactory().getConnection();
 		PreparedStatement stmt_selectAllContatos = con
@@ -58,9 +58,8 @@ public class TabContatos {
 			String email = rs_querySelect.getString("email");
 			String endereco = rs_querySelect.getString("endereco");
 
-			System.out.println("< " + nome + "  " + email
-					+ "  " + endereco + " >");
-
+			System.out.println("Nome= "+nome + "\nEmail= " + email+ "\nEndereço= " + endereco);
+			System.out.println("");
 		}
 
 		rs_querySelect.close();
