@@ -1,8 +1,8 @@
 package Composicao_java;
 
-public class Hora {
-	Hora horaChegada;
-	Hora horaSaida;
+public class Periodo {
+	Periodo horaChegada;
+	Periodo horaSaida;
 	int hour, minute, second;
 	
 	

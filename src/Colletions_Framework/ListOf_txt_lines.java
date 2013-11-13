@@ -1,6 +1,10 @@
 package Colletions_Framework;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,32 +18,35 @@ public class ListOf_txt_lines {
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		String line = br.readLine();
-		List lista = new ArrayList();
+		List<String> linesOf_File = new ArrayList<String>();
 		Scanner scan = new Scanner(System.in);
-
+		
+		// add line to list
 		while (line != null) {
-			lista.add(line);
+			linesOf_File.add(line);
 			line = br.readLine();
 		}
 		br.close();
-		// visualizando lista
 
-		for (int i = 0; i < lista.size(); i++) {
-			System.out.println(1 + i + " " + lista.get(i));
+		// visualizando lista
+		for (int i = 0; i < linesOf_File.size(); i++) {
+			System.out.println(i + " " + linesOf_File.get(i));
 
 		}
-		int i;
-		System.out.println("escolha uma linha para visualizar (-1 para sair)");
+		//Imprime uma linha do arquivo contido na lista
+		int indexOfLine;
 		do {
-
-			i = scan.nextInt();
+			System.out.print("Show Line: ");
+			 indexOfLine = scan.nextInt();
 			try {
-				System.out.println(lista.get(i));
+
+				System.out.println("\n"+linesOf_File.get(indexOfLine)+"\n");
+
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("invalid index");
 			}
 
-		} while (i >= 0 && i < lista.size());
+		} while (indexOfLine >= 0 && indexOfLine < linesOf_File.size());
 
 	}
 
