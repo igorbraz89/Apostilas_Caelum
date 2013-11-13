@@ -10,7 +10,7 @@ public class Funcionario {
 	public static void main(String a[]) throws ParseException, SQLException {
 
 		TabeladeHoras planilhaHoras = new TabeladeHoras();
-		TabHoraFuncionarios th = new TabHoraFuncionarios();
+		FolhaHoraFuncionarios th = new FolhaHoraFuncionarios();
 		
 		Contato contato = new Contato("Igor", "igor@giran.com.br",
 				"Rua da Ladeira");

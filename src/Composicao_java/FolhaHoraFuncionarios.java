@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class TabHoraFuncionarios {
+public class FolhaHoraFuncionarios {
 	private Connection connection;
 	private Calendar dia_Referencia;
 
@@ -22,7 +22,7 @@ public class TabHoraFuncionarios {
 		this.dia_Referencia = dia_Referencia;
 	}
 
-	public TabHoraFuncionarios() {
+	public FolhaHoraFuncionarios() {
 		// Estabelece a conex‹o com o DataBase
 		this.connection = new ConnectionFactory().getConnection();
 		this.dia_Referencia = Calendar.getInstance();
