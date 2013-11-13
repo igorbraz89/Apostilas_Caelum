@@ -29,8 +29,8 @@ public class Funcionario {
 			
 			diaChegada=JOptionPane.showInputDialog(null, "Data chegada dd/MM/yyyy");
 			horaChegada=JOptionPane.showInputDialog(null, "Hora chegada HH:mm:ss");
-			diaSaida=diaChegada;
-			horaSaida=JOptionPane.showInputDialog(null, "Data chegada HH:mm:ss");
+			diaSaida=JOptionPane.showInputDialog(null, "Data Saida dd/MM/yyyy");
+			horaSaida=JOptionPane.showInputDialog(null, "Hora Saida HH:mm:ss");
 			
 			//"13/11/2013 16:00:00"
 			
