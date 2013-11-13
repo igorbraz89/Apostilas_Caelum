@@ -14,24 +14,7 @@ public class Test_Contatos {
 
 		TabContatos tab_Contatos = new TabContatos();
 		Contato contato = new Contato();
-		int repete = 0;
-		do {
-
-			int choice;
-			try {
-				// Escolha da ação desejada
-				String aux = JOptionPane
-						.showInputDialog(null,
-								"1-Adicionar contato\n2-Show contatos\n3-Cria lista de contatos");
-				choice = Integer.parseInt(aux);
-			} catch (java.lang.NumberFormatException e) {
-				choice = 0;
-			}
-
-			switch (choice) {
-
-			case 1: // Adicionando um contato ao database
-
+		
 				// Inicialzação dos atributos do Contato
 				String nome = JOptionPane.showInputDialog(null, "Nome contato");
 				contato.setNome(nome);
@@ -50,28 +33,9 @@ public class Test_Contatos {
 							.println("Erro ao tentar gravar as informações no banco");
 					System.out.println(e.getErrorCode());
 				}
-				break;
+		
+		
 
-			case 2: // Visualiza a tabela contatos
-
-				System.out.println("Tabela contatos");
-				tab_Contatos.showTabelaContatos();
-				break;
-
-			case 3: // Cria Lista
-				List<Contato> lista = new ArrayList<Contato>();
-				lista = tab_Contatos.getLista();
-				
-				break;
-			
-
-			default:// Nenhuma opção válida escolhida
-				System.out.println("Invalid choice");
-				tab_Contatos.closeCon();
-
-			}
-			repete = JOptionPane.showConfirmDialog(null, "Deseja continuar?");
-		} while (repete == 0);
 	}
 
 	public static void visualizaLista(List<Contato> lista) {

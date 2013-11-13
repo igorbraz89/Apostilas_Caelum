@@ -1,45 +1,43 @@
 package Composicao_java;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TabeladeHoras {
-	private Periodo horaChegada = new Periodo();
-	private Periodo horaSaida = new Periodo();
-	
-	public Periodo getHoraChegada() {
-		return horaChegada;
+
+	private static final int FATOR_CONVERSAO_MILESEGUNDOS_HORAS = 1000 * 60 * 60;
+	private List<Periodo> periodos = new ArrayList<Periodo>();
+
+	public void adcionaPeriod(Periodo periodo) {
+		if (null == periodo) {
+			throw new IllegalArgumentException("O periodo n‹o pode ser nulo");
+		}
+		this.periodos.add(periodo);
+
 	}
 
-	public void setHoraChegada(int hora, int minutos, int segundos) {
-		this.horaChegada.setHour(hora);
-		this.horaChegada.setMinute(minutos);
-		this.horaChegada.setSecond(segundos);
-	}
-
-	public Periodo getHoraSaida() {
-		return horaSaida;
-	}
-
-	public void setHoraSaida(int hora, int minutos, int segundos) {
-		this.horaSaida.setHour(hora);
-		this.horaSaida.setMinute(minutos);
-		this.horaSaida.setSecond(segundos);
+	public  double tempoAtraso() {
 		
-	}
+		double horaAtraso=0;
+		for (Periodo periodo : periodos) {
+			horaAtraso += periodo.getTempoAtraso();
+			
+		}
 
+		return horaAtraso / FATOR_CONVERSAO_MILESEGUNDOS_HORAS;
+
+	}
 	
-	public static double tempoAtraso(Periodo horaChegada) {
 
-		double horario_seg = horaChegada.getHour() * 60 * 60
-				+ horaChegada.getMinute() * 60 + horaChegada.getSecond();
-		// return 60*((horario_seg - (8*3600))/3600); para ver em minutos
-		return (horario_seg - (8 * 3600)) / 3600;
-	}
+	public double horasTrabalhadas() {
+		double horasTrabalhadas = 0;
+		for (Periodo periodo : periodos) {
+			horasTrabalhadas += periodo.getTempotrabalhadoMileseg();
 
-	public double horasTrabalhadas(Periodo horaChegada, Periodo horaSaida) {
-		double horario_minutos = (horaSaida.getHour() * 60 + horaSaida
-				.getMinute())
-				- (horaChegada.getHour() * 60 + horaChegada.getMinute());
+		}
 
-		return horario_minutos / 60;
+		return horasTrabalhadas / FATOR_CONVERSAO_MILESEGUNDOS_HORAS;
+
 	}
 
 }

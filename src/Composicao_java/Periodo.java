@@ -1,30 +1,54 @@
 package Composicao_java;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Periodo {
-	Periodo horaChegada;
-	Periodo horaSaida;
-	int hour, minute, second;
-	
-	
-	
-	public void setHour(int hour) {
-		this.hour = hour;
+	private Date horaChegada;
+	private Date horaSaida;
+
+	public Periodo(Date horaChegada, Date horaSaida){
+		this.horaChegada= horaChegada;
+		this.horaSaida= horaSaida;
+		
 	}
-	public void setMinute(int minute) {
-		this.minute = minute;
+	public Periodo (String horaChegada, String horaSaida) throws ParseException{
+		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		this.horaChegada=sdf.parse(horaChegada);
+		this.horaSaida=sdf.parse(horaSaida); 
 	}
-	public void setSecond(int second) {
-		this.second = second;
+	public Date getHoraChegada() {
+		return horaChegada;
 	}
-	public int getHour(){
-		return this.hour;
+
+	public void setHoraChegada(Date horaChegada) {
+		this.horaChegada = horaChegada;
 	}
-	public int getMinute(){
-		return this.minute;
+
+	public Date getHoraSaida() {
+		return horaSaida;
 	}
-	public int getSecond(){
-		return this.second;
+
+	public void setHoraSaida(Date horaSaida) {
+		this.horaSaida = horaSaida;
 	}
-	
+
+	public long getTempotrabalhadoMileseg() {
+		return this.getHoraSaida().getTime() - this.getHoraChegada().getTime();
+	}
+
+	public long getTempoAtraso() {
+		Calendar dataChegadareferencia = Calendar.getInstance();
+		Calendar dataChegada = Calendar.getInstance();
+		dataChegada.setTime(this.horaChegada);
+		dataChegadareferencia.setTime(this.horaChegada);
+		dataChegadareferencia.set(Calendar.HOUR_OF_DAY, 9);
+		dataChegadareferencia.set(Calendar.MINUTE, 0);
+		dataChegadareferencia.set(Calendar.SECOND, 0);
+		return dataChegada.getTimeInMillis()
+				- dataChegadareferencia.getTimeInMillis();
+	}
 
 }
