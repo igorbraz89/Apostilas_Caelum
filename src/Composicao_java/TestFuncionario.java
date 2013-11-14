@@ -37,6 +37,7 @@ public class TestFuncionario {
 			String diaSaida;
 			String horaSaida;
 			if (funcionario.isReady()) {
+
 				diaChegada = JOptionPane.showInputDialog(null,
 						"Dia de trabalho dd/MM/yyyy");
 				horaChegada = JOptionPane.showInputDialog(null,
@@ -60,6 +61,7 @@ public class TestFuncionario {
 							.println("Erro de convers‹o: Confira se os dados do usuario est‹o nulos");
 					e2.printStackTrace();
 				}
+
 			} else {
 				JOptionPane
 						.showMessageDialog(null,
@@ -76,6 +78,7 @@ public class TestFuncionario {
 			}
 			System.out.println("table empty");
 			break;
+
 		case 3:// salva dados do funcionario
 			String nome;
 			String email;
@@ -89,8 +92,8 @@ public class TestFuncionario {
 			funcionario.salvaContato();
 
 			break;
-		case 4://altera funcionario
-
+		case 4:// Sair
+			
 			System.out.println("Programa encerrado");
 
 		default:
@@ -99,9 +102,10 @@ public class TestFuncionario {
 		}
 		return choice;
 	}
-	public static boolean altera(Funcionario funcionario){
-		boolean is_alterado=false;
-		
+
+	public static boolean altera(Funcionario funcionario) {
+		boolean is_alterado = false;
+
 		String nome;
 		String email;
 		String endereco;

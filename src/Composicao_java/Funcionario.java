@@ -4,19 +4,19 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 public class Funcionario {
-	private static  boolean is_Alterado = false;
+	private static boolean is_Alterado = false;
 	private static final boolean PRONTO_PARA_SALVAR = true;
 	private static final boolean IS_VAZIO = false;
-	private boolean isReadytoSave=false;
+	private boolean isReadytoSave = false;
 	private String nome;
 	private String email;
 	private String endereco;
 
-	private Contato contato = new Contato();//possui
-	
-	TabeladeHoras planilhaHoras = new TabeladeHoras();//consulta
-	
-	FolhaHoraFuncionarios folhadehora = new FolhaHoraFuncionarios();//cria
+	private Contato contato = new Contato();// possui
+
+	TabeladeHoras planilhaHoras = new TabeladeHoras();// consulta
+
+	FolhaHoraFuncionarios folhadehora = new FolhaHoraFuncionarios();// cria
 
 	public String getNome() {
 		return nome;
@@ -41,35 +41,38 @@ public class Funcionario {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
-	public void salvaContato(){
-		if(this.nome.equalsIgnoreCase(null)==IS_VAZIO){
-		contato.criaContato(this.nome, this.email, this.endereco);
-		isReadytoSave=PRONTO_PARA_SALVAR;
-		
+
+	public void salvaContato() {
+		if (this.nome.equalsIgnoreCase(null) == IS_VAZIO) {
+			contato.criaContato(this.nome, this.email, this.endereco);
+			isReadytoSave = PRONTO_PARA_SALVAR;
+
 		}
 	}
+
 	public void salvaFolhaHoras(String diaChegada, String horaChegada,
 			String diaSaida, String horaSaida) throws SQLException,
 			ParseException {
-		
+
 		planilhaHoras.adcionaPeriod(new Periodo(diaChegada + " " + horaChegada,
 				diaSaida + " " + horaSaida));
 
 		folhadehora.adciona(contato, planilhaHoras);
-		
+
 	}
-	public void deleteFolhaHoras() throws SQLException{
+
+	public void deleteFolhaHoras() throws SQLException {
 		folhadehora.delete();
 	}
-	public boolean alteraFolha(){
-		if(this.isReady()){
-		folhadehora.altera(contato, planilhaHoras);
+
+	public void alteraFolha() {
+		if (this.isReady()) {
+			folhadehora.altera(contato, planilhaHoras);
 		}
-		is_Alterado=this.isReady();
-		return is_Alterado;
+		
 	}
-	public boolean isReady(){
+
+	public boolean isReady() {
 		return isReadytoSave;
 	}
 }
