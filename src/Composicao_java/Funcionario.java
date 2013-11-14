@@ -67,7 +67,10 @@ public class Funcionario {
 
 	public void alteraFolha() {
 		if (this.isReady()) {
-			folhadehora.altera(contato, planilhaHoras);
+			 contato.setNome(this.nome);
+			 contato.setEmail(this.email);
+			 contato.setEndereco(this.endereco);
+			folhadehora.altera(this.contato, planilhaHoras);
 		}
 		
 	}

@@ -93,6 +93,7 @@ public class TestFuncionario {
 
 			break;
 		case 4:// Sair
+		
 			altera(funcionario);
 			System.out.println("Programa encerrado");
 
@@ -105,7 +106,6 @@ public class TestFuncionario {
 
 	public static void altera(Funcionario funcionario) {
 		
-
 		String nome;
 		String email;
 		String endereco;

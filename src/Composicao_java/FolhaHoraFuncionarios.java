@@ -72,6 +72,7 @@ public class FolhaHoraFuncionarios {
 	     String sql = "update TabelaHoraFuncionario set email=? , "+
 	             "endereco=?"+
 	    		 " where nome=?";
+	     System.out.println(funcionario.getNome()+" "+funcionario.getEmail()+" "+funcionario.getEndereco());
 	     
 	     try {
 	         PreparedStatement stmt = connection
