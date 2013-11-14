@@ -93,7 +93,7 @@ public class TestFuncionario {
 
 			break;
 		case 4:// Sair
-			
+			altera(funcionario);
 			System.out.println("Programa encerrado");
 
 		default:
@@ -103,8 +103,8 @@ public class TestFuncionario {
 		return choice;
 	}
 
-	public static boolean altera(Funcionario funcionario) {
-		boolean is_alterado = false;
+	public static void altera(Funcionario funcionario) {
+		
 
 		String nome;
 		String email;
@@ -116,7 +116,7 @@ public class TestFuncionario {
 		funcionario.setEmail(email);
 		funcionario.setEndereco(endereco);
 		funcionario.alteraFolha();
-		return is_alterado;
+		
 	}
 
 }

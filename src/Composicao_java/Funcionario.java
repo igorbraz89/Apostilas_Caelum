@@ -12,7 +12,7 @@ public class Funcionario {
 	private String email;
 	private String endereco;
 
-	private Contato contato = new Contato();// possui
+	private Contato contato;// possui
 
 	TabeladeHoras planilhaHoras = new TabeladeHoras();// consulta
 
@@ -44,7 +44,7 @@ public class Funcionario {
 
 	public void salvaContato() {
 		if (this.nome.equalsIgnoreCase(null) == IS_VAZIO) {
-			contato.criaContato(this.nome, this.email, this.endereco);
+			contato=new Contato(this.nome, this.email, this.endereco);
 			isReadytoSave = PRONTO_PARA_SALVAR;
 
 		}

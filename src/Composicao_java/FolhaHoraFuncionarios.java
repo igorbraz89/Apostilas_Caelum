@@ -14,6 +14,13 @@ public class FolhaHoraFuncionarios {
 	private Connection connection;
 	private Calendar dia_Referencia;
 
+	public FolhaHoraFuncionarios() {
+		// Estabelece a conex‹o com o DataBase
+		this.dia_Referencia = Calendar.getInstance();
+		System.out.println("Conex‹o estabelecida");
+
+	}
+
 	public Date getDia_Referencia() {
 		return new Date(this.dia_Referencia.getTimeInMillis());
 	}
@@ -22,16 +29,10 @@ public class FolhaHoraFuncionarios {
 		this.dia_Referencia = dia_Referencia;
 	}
 
-	public FolhaHoraFuncionarios() {
-		// Estabelece a conex‹o com o DataBase
-		this.connection = new ConnectionFactory().getConnection();
-		this.dia_Referencia = Calendar.getInstance();
-		System.out.println("Conex‹o estabelecida");
-
-	}
 
 	public void adciona(Contato funcionario, TabeladeHoras periodoTrabalho)
 			throws SQLException {
+		this.connection = new ConnectionFactory().getConnection();
 
 		// cria um preparedStatement
 		String sql_insertIntoContatos = "insert into TabelaHoraFuncionario"
@@ -59,18 +60,18 @@ public class FolhaHoraFuncionarios {
 	}
 
 	public void delete() throws SQLException{
-		 Connection con = new ConnectionFactory().getConnection();
+		  this.connection = new ConnectionFactory().getConnection();
 		
-		PreparedStatement stmt_Delete = con.prepareStatement("delete from  TabelaHoraFuncionario");
+		PreparedStatement stmt_Delete = this.connection.prepareStatement("delete from  TabelaHoraFuncionario");
 		stmt_Delete.execute();
 		stmt_Delete.close();
-		con.close();
+		this.connection.close();
 	}
 	public void altera(Contato funcionario, TabeladeHoras periodoTrabalho) {
-		Connection con = new ConnectionFactory().getConnection();
-	     String sql = "update TabelaHoraFuncionario set email=?,"+
+		this.connection = new ConnectionFactory().getConnection();
+	     String sql = "update TabelaHoraFuncionario set email=? , "+
 	             "endereco=?"+
-	    		 "where nome=?";
+	    		 " where nome=?";
 	     
 	     try {
 	         PreparedStatement stmt = connection
@@ -81,7 +82,8 @@ public class FolhaHoraFuncionarios {
 	 		stmt.setString(3, funcionario.getNome());
 	         stmt.execute();
 	         stmt.close();
-	         con.close();
+	         this.connection.close();
+	         
 	     } catch (SQLException e) {
 	         throw new RuntimeException(e);
 	     }
