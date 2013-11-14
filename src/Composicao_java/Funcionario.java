@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 public class Funcionario {
+	private static  boolean is_Alterado = false;
+	private static final boolean PRONTO_PARA_SALVAR = true;
+	private static final boolean IS_VAZIO = false;
 	private boolean isReadytoSave=false;
 	private String nome;
 	private String email;
@@ -40,22 +43,33 @@ public class Funcionario {
 	}
 	
 	public void salvaContato(){
-		isReadytoSave=true;
-		contato.criaContato(nome, email, endereco);
+		if(this.nome.equalsIgnoreCase(null)==IS_VAZIO){
+		contato.criaContato(this.nome, this.email, this.endereco);
+		isReadytoSave=PRONTO_PARA_SALVAR;
+		
+		}
 	}
 	public void salvaFolhaHoras(String diaChegada, String horaChegada,
 			String diaSaida, String horaSaida) throws SQLException,
 			ParseException {
-		if(isReadytoSave){
+		
 		planilhaHoras.adcionaPeriod(new Periodo(diaChegada + " " + horaChegada,
 				diaSaida + " " + horaSaida));
 
 		folhadehora.adciona(contato, planilhaHoras);
-		}else{
-			throw new IllegalArgumentException();
-		}
+		
 	}
 	public void deleteFolhaHoras() throws SQLException{
 		folhadehora.delete();
+	}
+	public boolean alteraFolha(){
+		if(this.isReady()){
+		folhadehora.altera(contato, planilhaHoras);
+		}
+		is_Alterado=this.isReady();
+		return is_Alterado;
+	}
+	public boolean isReady(){
+		return isReadytoSave;
 	}
 }
