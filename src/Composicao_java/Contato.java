@@ -6,16 +6,17 @@ import java.util.Calendar;
 public class Contato {
 
 	private Long id;
-	private String nome;
+	private String nome=null;
 	private String email;
 	private String endereco;
 	
 
 	// métodos get e set para id, nome, email, endereço e dataNascimento
-	public Contato(String nome, String email, String endereco) {
-		this.nome = nome;
-		this.email = email;
-		this.endereco = endereco;
+	public void criaContato(String nome, String email, String endereco) {
+			this.nome=nome;
+			this.email=email;
+			this.endereco=endereco;
+	
 	}
 
 	public String getNome() {
