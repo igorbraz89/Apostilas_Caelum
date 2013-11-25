@@ -17,7 +17,7 @@ public class TestFuncionario {
 		do {
 			String aux = JOptionPane
 					.showInputDialog(null,
-							"1-Salvar na tabela de horas\n2-Limpar tabela\n3-Dados Funcionario\n4-Sair");
+							"1-Salvar na tabela de horas\n2-Limpar tabela\n3-Dados Funcionario\n4-Altera\n5-Sair");
 
 			choice = Integer.parseInt(aux);
 
@@ -96,7 +96,8 @@ public class TestFuncionario {
 		
 			altera(funcionario);
 			System.out.println("Programa encerrado");
-
+		case 5:
+			System.out.println("bye");
 		default:
 			continua = NÌO;
 			break;
